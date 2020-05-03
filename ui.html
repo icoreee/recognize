@@ -1,0 +1,123 @@
+<style>
+  body {
+    margin: 0;
+  }
+  .hidden {
+    visibility: hidden;
+  }
+  button {
+    font-family: Inter, sans-serif;
+    border: none;
+    padding: 8px 16px;
+    text-align: left;
+    text-decoration: none;
+    display: block;
+    font-size: 16px;
+    width: 100%;
+    outline: none;
+    cursor: pointer;
+    transition: ease-in-out 75ms;
+    border-bottom: 1px solid #eaeaea;
+  }
+  .enable {
+    color: #000;
+  }
+  .enable:hover,
+  .active {
+    color: #1028ad !important;
+  }
+  .disable {
+    color: #888;
+  }
+</style>
+
+<button class="enable" value="ara">🇸🇦 Arabic</button>
+<button class="enable" value="bul">🇧🇬 Bulgarian</button>
+<button class="enable" value="chs">🇨🇳 Chinese (Simplified)</button>
+<button class="enable" value="cht">🇨🇳 Chinese (Traditional)</button>
+<button class="enable" value="hrv">🇭🇷 Croatian</button>
+<button class="enable" value="cze">🇨🇿 Czech</button>
+<button class="enable" value="dan">🇩🇰 Danish</button>
+<button class="enable" value="dut">🇳🇱 Dutch</button>
+<button class="enable" value="eng">🇬🇧 English</button>
+<button class="enable" value="fin">🇫🇮 Finnish</button>
+<button class="enable" value="fre">🇫🇷 French</button>
+<button class="enable" value="ger">🇩🇪 German</button>
+<button class="enable" value="gre">🇬🇷 Greek</button>
+<button class="enable" value="hun">🇭🇺 Hungarian</button>
+<button class="enable" value="kor">🇰🇷 Korean</button>
+<button class="enable" value="ita">🇮🇹 Italian</button>
+<button class="enable" value="jpn">🇯🇵 Japanese</button>
+<button class="enable" value="pol">🇵🇱 Polish</button>
+<button class="enable" value="por">🇵🇹 Portuguese</button>
+<button class="enable" value="rus">🇷🇺 Russian</button>
+<button class="enable" value="slv">🇸🇮 Slovenian</button>
+<button class="enable" value="spa">🇪🇸 Spanish</button>
+<button class="enable" value="swe">🇸🇪 Swedish</button>
+<button class="enable" value="tur">🇹🇷 Turkish</button>
+
+<script>
+  let result = {};
+
+  function disableButton(elem) {
+    elem.classList.add("disable");
+    elem.classList.remove("enable");
+    elem.disabled = true;
+  }
+
+  async function recognize(image, language) {
+    var formdata = new FormData();
+    formdata.append("file", image);
+    formdata.append("isOverlayRequired", "true");
+    formdata.append("language", language);
+    //formdata.append("scale", true);
+
+    response = await fetch("https://api.ocr.space/parse/image", {
+      method: "POST",
+      headers: {
+        apikey: "56b16152c688957",
+      },
+      body: formdata,
+    });
+
+    let timeout = setTimeout(() => {
+      result.error = "Timeout. Try later";
+      parent.postMessage({ pluginMessage: result }, "*");
+    }, 10000);
+
+    let result = await response.json();
+
+    // clearTimeout(timeout);
+
+    if (result.ErrorMessage != null) {
+      result.error = result.ErrorMessage[0];
+    } else if (result.ParsedResults[0].ParsedText == "") {
+      result.error = "Text is not detected";
+    }
+
+    parent.postMessage({ pluginMessage: result }, "*");
+  }
+
+  onmessage = async (event) => {
+    let file = new File([event.data.pluginMessage], "name.png");
+
+    if (file.size < 1048576) {
+      console.log(file.size / 1024 + " kb");
+      let buttons = document.querySelectorAll("button");
+
+      buttons.forEach((element) => {
+        element.addEventListener("click", () => {
+          recognize(file, element.value);
+
+          buttons.forEach((e) => disableButton(e));
+
+          element.classList.add("active");
+          element.innerHTML = "🤔 Recognizing...";
+        });
+      });
+    } else {
+      result.error = "File too big";
+      parent.postMessage({ pluginMessage: result }, "*");
+    }
+  };
+</script>
