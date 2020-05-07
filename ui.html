@@ -1,4 +1,6 @@
 <style>
+  @import url("https://fonts.googleapis.com/css2?family=Inter&display=swap");
+
   body {
     margin: 0;
   }
@@ -40,6 +42,7 @@
 <button class="enable" value="dan">🇩🇰 Danish</button>
 <button class="enable" value="dut">🇳🇱 Dutch</button>
 <button class="enable" value="eng">🇬🇧 English</button>
+<button class="enable" value="eng">🇬🇧 English2</button>
 <button class="enable" value="fin">🇫🇮 Finnish</button>
 <button class="enable" value="fre">🇫🇷 French</button>
 <button class="enable" value="ger">🇩🇪 German</button>
@@ -66,13 +69,22 @@
   }
 
   async function recognize(image, language) {
-    var formdata = new FormData();
+    let formdata = new FormData();
     formdata.append("file", image);
     formdata.append("isOverlayRequired", "true");
     formdata.append("language", language);
-    //formdata.append("scale", true);
+    if (language === "eng2") {
+      formdata.append("OCREngine", 2);
+    }
 
-    response = await fetch("https://api.ocr.space/parse/image", {
+    console.log(language);
+
+    let timeout = setTimeout(() => {
+      result.error = "Timeout. Try later";
+      parent.postMessage({ pluginMessage: result }, "*");
+    }, 8000);
+
+    let response = await fetch("https://api.ocr.space/parse/image", {
       method: "POST",
       headers: {
         apikey: "56b16152c688957",
@@ -80,14 +92,9 @@
       body: formdata,
     });
 
-    let timeout = setTimeout(() => {
-      result.error = "Timeout. Try later";
-      parent.postMessage({ pluginMessage: result }, "*");
-    }, 10000);
+    result = await response.json();
 
-    let result = await response.json();
-
-    // clearTimeout(timeout);
+    clearTimeout(timeout);
 
     if (result.ErrorMessage != null) {
       result.error = result.ErrorMessage[0];
