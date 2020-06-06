@@ -3,12 +3,19 @@
 
   body {
     margin: 0;
+    font-family: Inter, sans-serif;
+  }
+  span {
+    display: block;
+    padding: 12px 0;
+    font-size: 20px;
+    padding-left: 16px;
+    border-bottom: 1px solid #eaeaea;
   }
   .hidden {
     visibility: hidden;
   }
   button {
-    font-family: Inter, sans-serif;
     border: none;
     padding: 8px 16px;
     text-align: left;
@@ -18,21 +25,28 @@
     width: 100%;
     outline: none;
     cursor: pointer;
-    transition: ease-in-out 75ms;
+    transition: all ease-in-out 75ms;
     border-bottom: 1px solid #eaeaea;
   }
   .enable {
-    color: #000;
+    color: #111;
   }
+
+  .enable:hover {
+    background-color: #eaeaea;
+  }
+
   .enable:hover,
   .active {
     color: #1028ad !important;
   }
   .disable {
     color: #888;
+    cursor: default;
   }
 </style>
 
+<span>Choose text language</span>
 <button class="enable" value="ara">🇸🇦 Arabic</button>
 <button class="enable" value="bul">🇧🇬 Bulgarian</button>
 <button class="enable" value="chs">🇨🇳 Chinese (Simplified)</button>
@@ -42,7 +56,6 @@
 <button class="enable" value="dan">🇩🇰 Danish</button>
 <button class="enable" value="dut">🇳🇱 Dutch</button>
 <button class="enable" value="eng">🇬🇧 English</button>
-<button class="enable" value="eng">🇬🇧 English2</button>
 <button class="enable" value="fin">🇫🇮 Finnish</button>
 <button class="enable" value="fre">🇫🇷 French</button>
 <button class="enable" value="ger">🇩🇪 German</button>
@@ -73,7 +86,7 @@
     formdata.append("file", image);
     formdata.append("isOverlayRequired", "true");
     formdata.append("language", language);
-    if (language === "eng2") {
+    if (language === "eng" || "ger" || "fre") {
       formdata.append("OCREngine", 2);
     }
 
@@ -81,16 +94,22 @@
 
     let timeout = setTimeout(() => {
       result.error = "Timeout. Try later";
-      parent.postMessage({ pluginMessage: result }, "*");
+      return result;
     }, 8000);
 
-    let response = await fetch("https://api.ocr.space/parse/image", {
-      method: "POST",
-      headers: {
-        apikey: "56b16152c688957",
-      },
-      body: formdata,
-    });
+    let response;
+    try {
+      response = await fetch("https://api.ocr.space/parse/image", {
+        method: "POST",
+        headers: {
+          apikey: "56b16152c688957",
+        },
+        body: formdata,
+      });
+    } catch (error) {
+      result.error = "You don't have internet connection"
+      return result;
+    }
 
     result = await response.json();
 
@@ -102,7 +121,7 @@
       result.error = "Text is not detected";
     }
 
-    parent.postMessage({ pluginMessage: result }, "*");
+    return result;
   }
 
   onmessage = async (event) => {
@@ -113,13 +132,13 @@
       let buttons = document.querySelectorAll("button");
 
       buttons.forEach((element) => {
-        element.addEventListener("click", () => {
-          recognize(file, element.value);
-
-          buttons.forEach((e) => disableButton(e));
-
+        element.addEventListener("click", async () => {
           element.classList.add("active");
           element.innerHTML = "🤔 Recognizing...";
+          buttons.forEach((e) => disableButton(e));
+
+          result = await recognize(file, element.value);
+          parent.postMessage({ pluginMessage: result }, "*");
         });
       });
     } else {
