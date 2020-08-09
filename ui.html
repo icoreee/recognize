@@ -12,6 +12,10 @@
     padding-left: 16px;
     border-bottom: 1px solid #eaeaea;
   }
+  img {
+    height: 20px;
+    vertical-align: text-bottom;
+  }
   .hidden {
     visibility: hidden;
   }
@@ -27,6 +31,8 @@
     cursor: pointer;
     transition: all ease-in-out 75ms;
     border-bottom: 1px solid #eaeaea;
+    background-color: white;
+    line-height: 20px;
   }
   .enable {
     color: #111;
@@ -47,33 +53,196 @@
 </style>
 
 <span>Choose text language</span>
-<button class="enable" value="ara">🇸🇦 Arabic</button>
-<button class="enable" value="bul">🇧🇬 Bulgarian</button>
-<button class="enable" value="chs">🇨🇳 Chinese (Simplified)</button>
-<button class="enable" value="cht">🇨🇳 Chinese (Traditional)</button>
-<button class="enable" value="hrv">🇭🇷 Croatian</button>
-<button class="enable" value="cze">🇨🇿 Czech</button>
-<button class="enable" value="dan">🇩🇰 Danish</button>
-<button class="enable" value="dut">🇳🇱 Dutch</button>
-<button class="enable" value="eng">🇬🇧 English</button>
-<button class="enable" value="fin">🇫🇮 Finnish</button>
-<button class="enable" value="fre">🇫🇷 French</button>
-<button class="enable" value="ger">🇩🇪 German</button>
-<button class="enable" value="gre">🇬🇷 Greek</button>
-<button class="enable" value="hun">🇭🇺 Hungarian</button>
-<button class="enable" value="kor">🇰🇷 Korean</button>
-<button class="enable" value="ita">🇮🇹 Italian</button>
-<button class="enable" value="jpn">🇯🇵 Japanese</button>
-<button class="enable" value="pol">🇵🇱 Polish</button>
-<button class="enable" value="por">🇵🇹 Portuguese</button>
-<button class="enable" value="rus">🇷🇺 Russian</button>
-<button class="enable" value="slv">🇸🇮 Slovenian</button>
-<button class="enable" value="spa">🇪🇸 Spanish</button>
-<button class="enable" value="swe">🇸🇪 Swedish</button>
-<button class="enable" value="tur">🇹🇷 Turkish</button>
+
+<button class="enable" value="ara">
+  <img
+    src="https://emojipedia-us.s3.dualstack.us-west-1.amazonaws.com/thumbs/160/apple/237/flag-for-saudi-arabia_1f1f8-1f1e6.png"
+    alt=""
+  />
+  Arabic
+</button>
+<button class="enable" value="bul">
+  <img
+    src="https://emojipedia-us.s3.dualstack.us-west-1.amazonaws.com/thumbs/160/apple/237/flag-for-bulgaria_1f1e7-1f1ec.png"
+    alt=""
+  />
+  Bulgarian
+</button>
+<button class="enable" value="chs">
+  <img
+    src="https://emojipedia-us.s3.dualstack.us-west-1.amazonaws.com/thumbs/160/apple/237/flag-for-china_1f1e8-1f1f3.png"
+    alt=""
+  />
+  Chinese (Simplified)
+</button>
+<button class="enable" value="cht">
+  <img
+    src="https://emojipedia-us.s3.dualstack.us-west-1.amazonaws.com/thumbs/160/apple/237/flag-for-china_1f1e8-1f1f3.png"
+    alt=""
+  />
+  Chinese (Traditional)
+</button>
+<button class="enable" value="hrv">
+  <img
+    src="https://emojipedia-us.s3.dualstack.us-west-1.amazonaws.com/thumbs/160/apple/237/flag-for-croatia_1f1ed-1f1f7.png"
+    alt=""
+  />
+  Croatian
+</button>
+<button class="enable" value="cze">
+  <img
+    src="https://emojipedia-us.s3.dualstack.us-west-1.amazonaws.com/thumbs/160/apple/237/flag-for-czech-republic_1f1e8-1f1ff.png"
+    alt=""
+  />
+  Czech
+</button>
+<button class="enable" value="dan">
+  <img
+    src="https://emojipedia-us.s3.dualstack.us-west-1.amazonaws.com/thumbs/160/apple/237/flag-for-denmark_1f1e9-1f1f0.png"
+    alt=""
+  />
+  Danish
+</button>
+<button class="enable" value="dut">
+  <img
+    src="https://emojipedia-us.s3.dualstack.us-west-1.amazonaws.com/thumbs/160/apple/237/flag-for-netherlands_1f1f3-1f1f1.png"
+    alt=""
+  />
+  Dutch
+</button>
+<button class="enable" value="eng">
+  <img
+    src="https://emojipedia-us.s3.dualstack.us-west-1.amazonaws.com/thumbs/160/apple/237/flag-for-united-kingdom_1f1ec-1f1e7.png"
+    alt=""
+  />
+  English
+</button>
+<button class="enable" value="fin">
+  <img
+    src="https://emojipedia-us.s3.dualstack.us-west-1.amazonaws.com/thumbs/160/apple/237/flag-for-finland_1f1eb-1f1ee.png"
+    alt=""
+  />
+  Finnish
+</button>
+<button class="enable" value="fre">
+  <img
+    src="https://emojipedia-us.s3.dualstack.us-west-1.amazonaws.com/thumbs/160/apple/237/flag-for-france_1f1eb-1f1f7.png"
+    alt=""
+  />
+  French
+</button>
+<button class="enable" value="ger">
+  <img
+    src="https://emojipedia-us.s3.dualstack.us-west-1.amazonaws.com/thumbs/160/apple/237/flag-for-germany_1f1e9-1f1ea.png"
+    alt=""
+  />
+  German
+</button>
+<button class="enable" value="gre">
+  <img
+    src="https://emojipedia-us.s3.dualstack.us-west-1.amazonaws.com/thumbs/160/apple/237/flag-for-greece_1f1ec-1f1f7.png"
+    alt=""
+  />
+  Greek
+</button>
+<button class="enable" value="hun">
+  <img
+    src="https://emojipedia-us.s3.dualstack.us-west-1.amazonaws.com/thumbs/160/apple/237/flag-for-hungary_1f1ed-1f1fa.png"
+    alt=""
+  />
+  Hungarian
+</button>
+<button class="enable" value="kor">
+  <img
+    src="https://emojipedia-us.s3.dualstack.us-west-1.amazonaws.com/thumbs/160/apple/237/flag-for-south-korea_1f1f0-1f1f7.png"
+    alt=""
+  />
+  Korean
+</button>
+<button class="enable" value="ita">
+  <img
+    src="https://emojipedia-us.s3.dualstack.us-west-1.amazonaws.com/thumbs/160/apple/237/flag-for-italy_1f1ee-1f1f9.png"
+    alt=""
+  />
+  Italian
+</button>
+<button class="enable" value="jpn">
+  <img
+    src="https://emojipedia-us.s3.dualstack.us-west-1.amazonaws.com/thumbs/160/apple/237/flag-for-japan_1f1ef-1f1f5.png"
+    alt=""
+  />
+  Japanese
+</button>
+<button class="enable" value="pol">
+  <img
+    src="https://emojipedia-us.s3.dualstack.us-west-1.amazonaws.com/thumbs/160/apple/237/flag-for-poland_1f1f5-1f1f1.png"
+    alt=""
+  />
+  Polish
+</button>
+<button class="enable" value="por">
+  <img
+    src="https://emojipedia-us.s3.dualstack.us-west-1.amazonaws.com/thumbs/160/apple/237/flag-for-portugal_1f1f5-1f1f9.png"
+    alt=""
+  />
+  Portuguese
+</button>
+<button class="enable" value="rus">
+  <img
+    src="https://emojipedia-us.s3.dualstack.us-west-1.amazonaws.com/thumbs/160/apple/237/flag-for-russia_1f1f7-1f1fa.png"
+    alt=""
+  />
+  Russian
+</button>
+<button class="enable" value="slv">
+  <img
+    src="https://emojipedia-us.s3.dualstack.us-west-1.amazonaws.com/thumbs/160/apple/237/flag-for-slovenia_1f1f8-1f1ee.png"
+    alt=""
+  />
+  Slovenian
+</button>
+<button class="enable" value="spa">
+  <img
+    src="https://emojipedia-us.s3.dualstack.us-west-1.amazonaws.com/thumbs/160/apple/237/flag-for-spain_1f1ea-1f1f8.png"
+    alt=""
+  />
+  Spanish
+</button>
+<button class="enable" value="swe">
+  <img
+    src="https://emojipedia-us.s3.dualstack.us-west-1.amazonaws.com/thumbs/160/apple/237/flag-for-sweden_1f1f8-1f1ea.png"
+    alt=""
+  />
+  Swedish
+</button>
+<button class="enable" value="tur">
+  <img
+    src="https://emojipedia-us.s3.dualstack.us-west-1.amazonaws.com/thumbs/160/apple/237/flag-for-turkey_1f1f9-1f1f7.png"
+    alt=""
+  />
+  Turkish
+</button>
 
 <script>
   let result = {};
+  const languages = [
+    "hrv",
+    "cze",
+    "dan",
+    "dut",
+    "eng",
+    "fin",
+    "fre",
+    "ger",
+    "hun",
+    "ita",
+    "pol",
+    "por",
+    "slv",
+    "spa",
+    "swe",
+    "tur",
+  ];
 
   function disableButton(elem) {
     elem.classList.add("disable");
@@ -85,12 +254,12 @@
     let formdata = new FormData();
     formdata.append("file", image);
     formdata.append("isOverlayRequired", "true");
-    formdata.append("language", language);
-    if (language === "eng" || "ger" || "fre") {
+    if (languages.includes(language)) {
       formdata.append("OCREngine", 2);
+    } else {
+      formdata.append("OCREngine", 1);
+      formdata.append("language", language);
     }
-
-    console.log(language);
 
     let timeout = setTimeout(() => {
       result.error = "Timeout. Try later";
@@ -107,7 +276,7 @@
         body: formdata,
       });
     } catch (error) {
-      result.error = "You don't have internet connection"
+      result.error = "You don't have internet connection";
       return result;
     }
 
@@ -120,6 +289,8 @@
     } else if (result.ParsedResults[0].ParsedText == "") {
       result.error = "Text is not detected";
     }
+
+    console.log(result);
 
     return result;
   }
@@ -134,8 +305,8 @@
       buttons.forEach((element) => {
         element.addEventListener("click", async () => {
           element.classList.add("active");
-          element.innerHTML = "🤔 Recognizing...";
-          buttons.forEach((e) => disableButton(e));
+          element.innerHTML = `<img src="https://emojipedia-us.s3.dualstack.us-west-1.amazonaws.com/thumbs/160/apple/237/thinking-face_1f914.png" alt=""> Recognizing...`;
+          buttons.forEach(disableButton);
 
           result = await recognize(file, element.value);
           parent.postMessage({ pluginMessage: result }, "*");
