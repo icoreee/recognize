@@ -236,6 +236,8 @@
 </button>
 
 <script>
+  const maxFileSize = 1048576;
+
   let result = {};
 
   function disableButton(elem) {
@@ -292,14 +294,12 @@
   onmessage = async (event) => {
     let file = new File([event.data.pluginMessage], "name.png");
 
-    if (file.size < 1048576) {
-      console.log(file.size / 1024 + " kb");
+    if (file.size < maxFileSize) {
       let buttons = document.querySelectorAll("button");
 
       buttons.forEach((element) => {
         element.addEventListener("click", async () => {
           element.classList.add("active");
-          console.log(element.querySelector(".label"));
           element.querySelector(".label").innerHTML = "Recognizing...";
           element.querySelector(
             "svg"
