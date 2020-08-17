@@ -10,7 +10,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 function getImage(paint) {
     return __awaiter(this, void 0, void 0, function* () {
         const bytes = yield paint.exportAsync();
-        figma.showUI(__html__, { height: 479 });
+        figma.showUI(__html__, { height: 480 });
         figma.ui.postMessage(bytes);
         figma.ui.onmessage = (message) => {
             if (message.error != null) {

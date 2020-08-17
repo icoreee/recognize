@@ -1,7 +1,7 @@
 async function getImage(paint) {
   const bytes = await paint.exportAsync();
 
-  figma.showUI(__html__, { height: 479 });
+  figma.showUI(__html__, { height: 480 });
 
   figma.ui.postMessage(bytes);
 
